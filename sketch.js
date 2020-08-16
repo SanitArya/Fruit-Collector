@@ -12,6 +12,8 @@ var fruitGroup;
 var fruit1_img, fruit2_img, fruit3_img, fruit4_img, fruit5_img;
 var player_img;
 
+var player1,player2,plr1Score,plr2Score;
+
 
 function preload(){
   back_img = loadImage("images/jungle.jpg");
@@ -29,6 +31,8 @@ function setup() {
   game = new Game();
   game.getState();
   game.start();
+
+ 
   
 }
 
@@ -46,4 +50,7 @@ function draw() {
     
      game.end();
    }
+
+   
+
 }

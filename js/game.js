@@ -45,6 +45,26 @@ class Game{
                  var y=200;
                  var index =0;
                  drawSprites();
+
+                 player1 = database.ref("players/player1/score");
+                 player1.on("value",function(data){
+               
+                   plr1Score = data.val();
+                 })
+               
+                 player2 = database.ref("players/player2/score");
+                 player2.on("value",function(data){
+               
+                   plr2Score = data.val();
+                 })
+
+
+                 console.log(plr1Score)
+                 console.log(plr2Score)
+
+                 
+
+                 
                  for(var plr in allPlayers){
                     
                     
@@ -61,6 +81,10 @@ class Game{
                          textSize(25);
                          text(allPlayers[plr].name ,x-25,y+25);
 
+                         fill("white")
+                         textSize(20)
+                         text("Player 1: "+plr1Score,100,50)
+                         text("Player 2: "+plr2Score,100,100)
                          
                      }
                     
@@ -100,19 +124,18 @@ class Game{
                  
                   if (player.index !== null) {
                      //fill code here, to destroy the objects.
-                     
 
-                  }   
-                  
-                  if(fruitGroup.isTouching(player)){
 
-                    fruitGroup.destroyEach();
-
-                    
-                  }
-
-                  
-                
+                     for(var i = 0; i<fruitGroup.length;i++){
+                       
+                        if(fruitGroup.get(i).isTouching(players)){
+                           
+                            fruitGroup.get(i).destroy();
+                            player.score = player.score+1;
+                            player.update();
+                     }
+                    }
+                  }                    
     }
 
     end(){

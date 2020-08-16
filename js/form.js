@@ -35,9 +35,11 @@ class Form{
             this.button.hide();
             player.name = this.input.value();
             playerCount += 1;
+            player.Score = 0
             player.index = playerCount;
             player.update();
             player.updateCount(playerCount);
+            player.updateCount(Score);
             this.greeting.html("Hello " + player.name)
             this.greeting.position(400,250);
             this.greeting.style('color', 'white');
@@ -47,6 +49,8 @@ class Form{
         this.reset.mousePressed(() => {
             player.updateCount(0);
             game.update(0);
+
+            database.ref("/").child("players").remove();
         });
 
     }
